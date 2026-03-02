@@ -36,4 +36,18 @@ exports.identify = async (req, res) => {
         }
       });
     }
+    const primaryContacts = allContacts.filter(c => c.linkprecedence === 'primary');
+
+    for (let contact of primaryContacts) {
+      if (contact.id !== primaryContact.id) {
+        await pool.query(
+          `UPDATE Contact
+           SET linkPrecedence = 'secondary',
+               linkedId = $1,
+               updatedAt = CURRENT_TIMESTAMP
+           WHERE id = $2`,
+          [primaryContact.id, contact.id]
+        );
+      }
+    }
 };
