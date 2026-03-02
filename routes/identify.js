@@ -4,4 +4,8 @@ const identifyController = require('../controllers/identifyController');
 
 router.post('/',identifyController.identify);
 
+router.get('/',(req,res) => {
+    res.send("Only post method is applicable");
+});
+
 module.exports = router;

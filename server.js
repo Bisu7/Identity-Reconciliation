@@ -2,10 +2,15 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 
+
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
+
 const identifyRoute = require('./routes/identify');
-app.use('./identify',identifyRoute);
+app.use('/identify',identifyRoute);
 
 const PORT = process.env.PORT || 3000;
 
