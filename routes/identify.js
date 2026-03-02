@@ -4,3 +4,4 @@ const identifyController = require('../controllers/identifyController');
 
 router.post('/',identifyController.identify);
 
+module.exports = router;
